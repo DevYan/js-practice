@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h3>5 种简单数据类型</h3>
+	<ul>
+		<li>Undefined</li>
+		<li>Null</li>
+		<li>Boolean</li>
+		<li>Number</li>
+		<li>String</li>
+	</ul>
+	<hr>
+	<h3>typeof操作符,可能的返回值</h3>
+	<ul>
+		<li>"undefined" ——如果这个值未定义</li>
+		<li>"boolean" ——如果这个值是布尔值；</li>
+		<li>"string" ——如果这个值是字符串；</li>
+		<li>"number" ——如果这个值是数值</li>
+		<li>"object" ——如果这个值是对象或 null；</li>
+		<li>"function" ——如果这个值是函数</li>
+	</ul>
+	<hr>
+	<h3>Boolean类型</h3>
+	<table>
+		<tr>
+			<td style="width:200px;">数据类型</td>
+			<td style="width:400px;">转换为true值</td>
+			<td style="width:200px;">false</td>
+		</tr>
+		<tr>
+			<td>Boolean</td>
+			<td>true</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>String</td>
+			<td>任何非空字符串</td>
+			<td>"" （空字符串）</td>
+		</tr>
+		<tr>
+			<td>Number</td>
+			<td>任何非零数字值（包括无穷大）</td>
+			<td>0和NaN</td>
+		</tr>
+		<tr>
+			<td>Object</td>
+			<td>任何对象</td>
+			<td>null</td>
+		</tr>
+		<tr>
+			<td>Undefined</td>
+			<td>不适用</td>
+			<td>undefined</td>
+		</tr>
+	</table>
+	<hr>
+	<h3>数值转换</h3>
+	<ul>
+		<li>Number()</li>
+		<li>parseInt()</li>
+		<li>parseFloat()</li>
+	</ul>
+<script>
+	var message = "some string";
+	console.log(typeof message);
+	console.log(typeof(message));
+	console.log(typeof(null));
+
+	var age;
+	console.log(typeof age);
+	console.log(typeof name);
+
+	console.log(0.1+0.2==0.3);//false
+	console.log(5/0);//Infinity
+	console.log(0/0);//NaN
+	console.log(NaN==NaN);//false
+
+	console.log(Number(0xa));//false
+</script>
+</body>
+</html>
