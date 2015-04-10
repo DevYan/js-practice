@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+<script>
+//Boolean 类型
+var booleanObject = new Boolean(true);
+
+//Number 类型
+var numberObject = new Number(10);
+var num = 10;
+num.toFixed(2)//10.00
+// toExponential() 返回以指数表示法（也称 e 表示法）表示的数值的字符串形式
+num.toExponential(1);//1.0e+1
+
+
+//String类型
+var stringObject = new String("hello world");
+//charAt() 方法以单字符字符串的形式返回给定位置的那个字符
+var stringValue = "hello world";
+stringValue.charAt(1);//e
+stringValue.charCodeAt(1);//101
+
+//模式匹配
+var text = "cat, bat, sat, fat";
+var pattern = /.at/;
+
+var matches = text.match(pattern);
+console.log(matches);
+</script>
+</body>
+</html>
