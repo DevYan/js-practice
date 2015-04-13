@@ -95,6 +95,18 @@
  var ccc2 = ccc.concat("yellow", ["black", "brown"]);
  console.log(ccc); //red,green,blue
  console.log(ccc2); //red,green,blue,yellow,black,brown
+ //删除
+ var del = [1,2,3,4,5,6];
+ del.splice(2,1);//删除位置 删除项数
+ console.log(del);
+ //插入
+ var insert = [1,2,3,4,5,6];
+ insert.splice(1,0,33,44,55);//起始位置 删除数量 插入的东东
+ console.log(insert);
+ //替换
+ var replace = [1,2,3,4,5,6];
+ insert.splice(1,0,33,44,55);//起始位置 删除数量 插入的东东
+ console.log(replace);
 
 /*
  *	位置方法
@@ -103,6 +115,54 @@
  var nnn = [1,2,3,4,5,4,3,2,1];
  console.log(nnn.indexOf(4));
  console.log(nnn.lastIndexOf(4));
+
+/*
+ *  迭代方法
+ */
+ console.log('迭代方法');
+ //every():对数组中的每一项运行给定函数,如果该函数对每一项都返回 true,则返回 true
+ var nums = [1,2,3,4,5,4,3,2,1];
+ var everyResult = nums.every(function(item,index,array){
+    return (item>2);
+ });
+ console.log(everyResult);
+ //some():对数组中的每一项运行给定函数,如果该函数对任一项返回 true,则返回 true。
+ var nums2 = [1,2,3,4,5,4,3,2,1];
+ var someResult = nums2.some(function(item,index,array){
+    return (item>2);
+ });
+ console.log(someResult);
+ //filter():对数组中的每一项运行给定函数,返回该函数会返回 true 的项组成的数组。
+ var nums3 = [1,2,3,4,5,4,3,2,1];
+ var filterResult = nums3.filter(function(item,index,array){
+    return (item>2);
+ });
+ console.log(filterResult);
+ //map():对数组中的每一项运行给定函数,返回每次函数调用的结果组成的数组。
+ var nums4 = [1,2,3,4,5,4,3,2,1];
+ var mapResult = nums4.map(function(item,index,array){
+    return item*2;
+ });
+ console.log(mapResult);
+ //forEach():对数组中的每一项运行给定函数。这个方法没有返回值。
+ var nums5 = [1,2,3,4,5,4,3,2,1];
+ nums5.forEach(function(item, index, array){
+  item =1;
+ });
+ console.log(nums5);
+
+
+ /*
+ *  归并方法
+ */
+ console.log('归并方法');
+ //reduce()和 reduceRight()这两个方法都会迭代数组的所有项,然后构建一个最终返回的值
+ //函数接收 4 个参数:前一个值、当前值、项的索引和数组对象
+ var values = [1,2,3,4,5];
+ var sum = values.reduce(function(prev, cur, index, array){
+     return prev + cur;
+ });
+ console.log(sum); //15
 </script>
 </body>
 </html>
