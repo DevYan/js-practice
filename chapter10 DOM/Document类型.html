@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    //Document节点的特征
+    nodeType的值为9
+    nodeName的值为"#document"
+    nodeValue的值为null
+    parentNode的值为null
+    ownerDocument的值为null
+
+    //快速访问子节点
+    var html = document.documentElement;
+    //直接得到body节点
+    var body = document.body;
+    //获取doctype节点
+    var doctype = document.doctype;
+
+    //获取title中的文本
+    var oringinalTitle = document.title;
+    //取得完整的URL
+    var url = document.URL;
+    //取得域名
+    var domain = document.domain;
+    //取得来源页面的URL
+    var referrer = document.referrer;
+    
+    //查找元素
+    document.getElementById();
+    document.getElementsByTagName();
+    getElementsByName();//只有HTMLDocument类型才有的方法
+
+    //特殊集合
+    document.anchors;//包含文档中所有带name特性的a元素
+    document.forms;//包含文档中所有的<form>元素
+    document.images;//文档中所有的img元素
+    document.links;//所有带有href属性的a元素
+
+    //DOM一致性检测
+    document.implementation.hasFeature('要检测的DOM功能','版本号');
+
+    //文档写入
+    write() writeln() open() close()
+</script>
+</body>
+</html>

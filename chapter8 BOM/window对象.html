@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>window对象</title>
+</head>
+<body>
+	<head>
+		<title>Frameset Example</title>
+	</head>
+	<frameset rows="160,*">
+		<frame src="frame.htm" name="topFrame"></frame>
+		<frameset cols="50%,50%">
+			<frame src="anotherframe.htm" name="leftFrame"></frame>
+			<frame src="yetanotherframe.htm" name="rightFrame"></frame>
+		</frameset>
+	</frameset>
+</body>
+</html>
+<script type="text/javascript">
+	//全局变量不能删除 直接在windows上定义的属性可以
+	var age = 20;
+	window.color = "red";
+	delete window.age;
+	delete window.color;
+	console.log(window.age);//20
+	console.log(window.color);//undefined
+
+	//获取窗口位置
+	var leftPos = (typeof window.screenLeft == "number") ?
+		window.screenLeft : window.screenX;
+	var topPos = (typeof window.screenTop == "number") ?
+		window.screenTop : window.screenY;
+	console.log('x:'+leftPos+';y:'+topPos);
+
+	//窗口移动
+	window.moveTo(0,0);//窗口移动到左上角
+	window.moveBy(0,100);//窗口向下移动100
+
+	//取得页面视口大小
+	var pageWidth = window.innerWidth,
+		pageHeight = window.innerHeight;
+
+	if (typeof pageWidth != 'number') {
+		if (document.compatMode == "CSS1Compat") {
+			pageWidth = document.documentElement.clientWidth;
+			pageHeight = document.documentElement.clientHeight;
+		}else{
+			pageWidth = document.body.clientWidth;
+			pageHeight = document.body.clientHeight;
+		}
+	};
+
+	console.log('page width:'+pageWidth+' page height:'+pageHeight);
+
+	//调整浏览器窗口大小
+	window.resizeTo(100,100); //100 x 100
+	window.resizeBy(100,50); //200 x 150
+
+	/*
+	window.open() 4个参数
+	1.要加载的URL
+	2.窗口目标
+	3.特性字符串
+	4.新页面是否在浏览器历史中取代当前页
+	*/
+	//window.open("http://www.baidu.com","topFrame");
+	
+	//超时调用
+	//setTimeout 不建议传递字符串
+	setTimeout(function(){
+		console.log('setTimeout 被调用');
+	},1000);
+
+	//取消超时调用
+	var timeoutId = setTimeout(function(){
+		console.log('待取消');
+	},1000);
+	clearTimeout(timeoutId);
+
+	//间歇调用
+	setInterval(function(){
+		console.log('setInterval 被调用');
+	},5000);
+</script>

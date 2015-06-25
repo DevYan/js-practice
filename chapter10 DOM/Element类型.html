@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    //Element节点的特征
+    nodeType的值为1
+    nodeName的值为元素的标签名
+    nodeValue的值为null
+    parentNode的值为Document或Element
+
+    //HTML元素的一些标准特性
+    id 元素在文档中的唯一标示
+    title 元素的附加说明信息
+    lang 元素内容的语言代码，一般不用
+    dir 语言方向，ltr rtl
+    className 类名
+
+    //取得特性
+    getAttribute()
+    setAttribute()//两个参数 1.要设置的特性名 2.值
+    removeAttribute()
+
+    //attributes属性
+    //NameNodeMap对象的方法
+    getNamedItem(name)//返回nodeName属性等于name的节点
+    removeNamedItem(name)//移除nodeName属性等于name的节点
+    setNamedItem(node)//添加节点
+    item(pos)//返回位于pos处的节点
+
+    //遍历元素特性
+    function outputAttributes(element) {
+        var pairs = new Array(),
+            attrName,
+            attrValue,
+            i,
+            len;
+        for (i = 0,len=element.attributes.length; i < len; i++) {
+            attrName = element.attributes[i].nodeName;
+            attrValue = element.attributes[i].nodeValue;
+            //保证ie7是正常的
+            if (element.attributes[i].specified) {
+                pairs.push(attrName + "=\"" + attrValue + "\"");
+            };
+        };
+        return pairs.join(" ");
+    }
+
+    //创建新元素
+    document.createElement();
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script type="text/javascript">
+//Node类型
+    //每个节点都有一个nodeType属性，表明节点的类型
+    Node.ELEMENT_NODE(1)
+    Node.ATTRIBUTE_NODE(2);
+    Node.TEXT_NODE(3);
+    Node.CDATA_SECTION_NODE(4);
+    Node.ENTITY_REFERENCE_NODE(5);
+    Node.ENTITY_NODE(6);
+    Node.PROCESSING_INSTRUCTION_NODE(7);
+    Node.COMMENT_NODE(8);
+    Node.DOCUMENT_NODE(9);
+    Node.DOCUMENT_TYPE_NODE(10);
+    Node.DOCUMENT_FRAGMENT_NODE(11);
+    Node.NOTATION_NODE(12);
+
+    //确定节点类型(ie中无效)
+    if (someNode.nodeType == Node.ELEMENT_NODE) {
+        console.log("所比较的是一个元素");
+    };
+    //确定节点类型(使用所有浏览器)
+    if (someNode.nodeType == 1) {
+        console.log("所比较的是一个元素");
+    };
+//节点关系
+    //每个节点都有childNodes属性
+    someNode.childNodes;//类数组，是动态的
+    //访问NodeList中的节点
+    var firstChild = someNode.childNodes[0];
+    var secondChild = someNode.childNodes.item(1);
+    //将NodeList转换为数组(ie8及之前版本无效)
+    var arrayOfNodes = Array.prototype.slice.call(someNode.childNodes,0);
+    //将NodeList转换为数组(通用版本)
+    function convertToArray(nodes) {
+        var array = null;
+        try {
+            array = Array.prototype.slice.call(someNode.childNodes,0);
+        } catch (ex) {
+            array =  new Array();
+            for (var i = 0, len = nodes.length; i < len; i++) {
+                array.push(nodes[i]);
+            };
+        }
+        return array;
+    }
+    //访问前一个节点 previousSibling
+    //访问后一个节点 nextSibling
+    //判断首末节点
+    if (node.nextSibling==null) {
+        console.log('末节点');
+    } else if (node.previousSibling==null) {
+        console.log('首节点');
+    }
+    //判断是否有子节点
+    node.hasChildNodes();
+    //整个文档的根节点
+    node.ownerDocument;
+//操作节点
+    //添加节点，返回新增的节点
+    var returnNode = someNode.appendChild(newNode);
+    returnNode == newNode; //true
+    someNode.lastChild == newNode;//true
+    //把节点放在特定的位置上
+    //insertBefore() 参数:1.要插入的节点2.参照节点
+
+    //插入后成为最后一个节点
+    returnNode = someNode.insertBefore(newNode,null);
+    //插入后成为第一个节点
+    returnNode = someNode.insertBefore(newNode,someNode.firstChild);
+    //插入到最后一个子节点前面
+    returnNode = someNode.insertBefore(newNode,someNode.lastChild);
+
+    //替换节点,返回被替换的节点
+    //replaceChild() 参数:1.要插入的节点2.要替换的节点
+    //替换第一个子节点
+    returnNode = someNode.replaceChild(newNode,someNode.firstChild);
+
+    //移除节点
+    //移除第一个子节点
+    returnNode = someNode.removeChild(someNode.firstChild);
+
+    //复制节点
+    myList.cloneNode(true);//深复制，复制节点及其子节点
+    myList.cloneNode();//浅复制，只复制节点本身
+    
+</script>
+</body>
+</html>

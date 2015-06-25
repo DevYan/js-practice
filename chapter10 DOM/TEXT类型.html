@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    //Text节点的特征
+    nodeType 值为3
+    nodeName 值为 #text
+    nodeValue 值为节点所包含的文本
+    parentNode 是一个Element
+    没有子节点
+    appendData(text) //将text添加到节点的末尾
+    deleteData(offset,count) //从offset起删除count个字符
+    insertData(offset,text) //从offset的位置插入text
+    replaceData(offset,count,text)
+    splitText(offset)  //从offset指定的位置将文本节点分成两个文本节点
+    substringData(offset,count) //提取offset到offset+count处的字符串
+
+    //创建文本节点
+    document.createTextNode("<strong>Hello</strong> World!");
+</script>
+</body>
+</html>

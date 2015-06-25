@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户代理检测</title>
+</head>
+<body>
+<script type="text/javascript">
+var ua = navigator.userAgent;
+
+//识别呈现引擎
+var client = function(){
+	var engine = {
+		ie:0,
+		gecko:0,
+		webkit:0,
+		khtml:0,
+		opera:0,
+		//具体版本号
+		ver:null
+	}
+	//在此检测呈现引擎、平台和设备
+	if (window.opera) {
+		//识别Opera
+		engine.ver = window.opera.version();
+		engine.opera = parseFloat(engine.ver);
+	}else if (/AppleWebKit\/(\S+)/.test(ua)) {
+		//检测webkit
+		engine.ver = RegExp["$1"];
+		engine.webkit = parseFloat(engine.ver);
+	}else if (/KHTML\/(\S+)/.test(ua)||/Konquerror\/([^;]+)/.test(ua)) {
+		//检测KHTML
+		engine.ver = RegExp["$1"];
+		engine.khtml = parseFloat(engine.ver);
+	}else if (/rv:([^\)]+)\) Gecko\/\d{8}/.test(ua)) {
+		//检测Gecko
+		engine.ver = RegExp["$1"];
+		engine.gecko = parseFloat(engine.ver);
+	}else if (/MSIE ([^;]+)/.test(ua)) {
+		//检测IE
+		engine.ver = RegExp["$1"];
+		engine.ie = parseFloat(engine.ver);
+	};
+
+
+	return {
+		engine:engine
+	}
+}();
+
+
+console.log(client);
+
+</script>	
+</body>
+</html>

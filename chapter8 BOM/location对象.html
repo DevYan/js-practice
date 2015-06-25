@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>location对象</title>
+</head>
+<body>
+	<head>
+		<title>Frameset Example</title>
+	</head>
+	<frameset rows="160,*">
+		<frame src="frame.htm" name="topFrame"></frame>
+		<frameset cols="50%,50%">
+			<frame src="anotherframe.htm" name="leftFrame"></frame>
+			<frame src="yetanotherframe.htm" name="rightFrame"></frame>
+		</frameset>
+	</frameset>
+	<input type="button" value="assign方法改变地址" onclick="assign_url()">
+	<input type="button" value="location方法改变地址" onclick="location_url()">
+	<input type="button" value="href方法改变地址" onclick="href_url()">
+</body>
+</html>
+<script type="text/javascript">
+	//URL解析 以以下地址为例
+
+	/*
+	var url = "http://developer.baidu.com/map/reference/index.php?title=Class:%E6%80%BB%E7%B1%BB/%E6%A0%B8%E5%BF%83%E7%B1%BB#.E6.9E.84.E9.80.A0.E5.87.BD.E6.95.B0";
+	console.log(location.hash);//#.E6.9E.84.E9.80.A0.E5.87.BD.E6.95.B0
+	console.log(location.host);//developer.baidu.com
+	console.log(location.hostname);//developer.baidu.com
+	console.log(location.href);//整个网址
+	console.log(location.pathname);//  /map/reference/index.php
+	console.log(location.port);//  无端口号为空
+	console.log(location.protocol);//  页面使用协议
+	console.log(location.search);//  ?title=Class:%E6%80%BB%E7%B1%BB/%E6%A0%B8%E5%BF%83%E7%B1%BB
+	*/
+
+	//解析查询字符串函数
+	function getQueryStringArgs(){
+		//取得查询字符串并且去掉开头的？
+		var qs = (location.search.length>0)?location.search.substring(1):"",
+			args = {},//保存数据的对象
+			items = qs.length?qs.split("&"):[],//取得每一项
+			item = null,
+			name = null,
+			value = null,
+			i = 0,//for循环中使用
+			len = items.length;
+		for (var i = 0; i < len; i++) {
+			item = items[i].split("=");
+			name = decodeURIComponent(item[0]);
+			value = decodeURIComponent(item[1]);
+			if (name.length) {
+				args[name] = value;
+			}
+		}
+
+		return args;
+	}
+
+	function assign_url(){
+		location.assign("http://www.baidu.com");
+	}
+	function location_url(){
+		window.location = "http://www.baidu.com";
+	}
+	function href_url(){
+		location.href = "http://www.baidu.com";
+	}
+
+	//每次修改location的属性，页面都会以新URL重新加载
+
+	location.reload();//重新加载(有可能从缓存中加载)
+	location.reload(true);//重新加载(从服务器重新加载)
+</script>
