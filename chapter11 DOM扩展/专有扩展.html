@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+//文档模式
+    //以下四种文档模式
+    IE5 //混杂模式渲染页面 >=IE8的功能无法使用
+    IE7 //IE7标准模式渲染页面 >=IE8的功能无法使用
+    IE8 //IE8标准模式渲染页面 >=IE9的功能无法使用
+    IE9 //以IE9标准模式渲染页面
+
+    强制然浏览器以某种模式渲染页面
+    <meta http-equiv="X-UA-Compatible" content="IE-IEVersion">
+    IEVersion有以下几种值
+    Edge //以最新的文档模式渲染
+    EmulateIE9//若有文档类型声明，以IE9标准渲染页面，否则设置为IE5
+    EmulateIE8//若有文档类型声明，以IE8标准渲染页面，否则设置为IE5
+    EmulateIE7//若有文档类型声明，以IE7标准渲染页面，否则设置为IE5
+    9//强制以IE9标准模式渲染页面，忽略文档类型声明
+    8//强制以IE8标准模式渲染页面，忽略文档类型声明
+    7//强制以IE7标准模式渲染页面，忽略文档类型声明
+    5//强制以IE5标准模式渲染页面，忽略文档类型声明
+
+    //得到给定 页面中使用的是什么文档模式
+    var mode = document.documentMode//IE的私有属性
+
+//children 属性
+    只得到元素子节点
+
+//contains 方法
+    判断某一元素是否为另一元素的子元素
+    DOM Level3 compareDocumentPosition() 也能确定节点之间的关系，以返回掩码表示
+    1 无关
+    2 居前
+    4 居后
+    8 包含
+    16 被包含
+
+
+    /*
+     * 通用的contains函数
+     * @refNode 参考点
+     * @otherNode 要检查的节点
+     */
+    function contains(refNode,otherNode) {
+        if (typeof refNode.contains == "fuction" &&
+                (!client.engine.webkit || client.engine.webkit >= 522)) {
+            return refNode.contains(otherNode);
+        } else if (typeof refNode.compareDocumentPosition == "function") {
+            return !!(refNode.compareDocumentPosition(otherNode) & 16);
+        } else {
+            var node = otherNode.parentNode;
+            do {
+                if (node == refNode) {
+                    return true;
+                } else {
+                    node = node.parentNode;
+                }
+            } while (node !== null);
+            return false;
+        }
+    }
+
+//插入文本
+    //innerText
+    读取后不会返回HTML标签，只会返回文本内容
+
+    function getInnerText(element) {
+        return (typeof element.textContent == "string") ? element.textContent : element.innerText;
+    }
+
+    function setInnerText(element,text) {
+        if (typeof element.textContent == "string") {
+            element.textContent = text;
+        } else {
+            element.innerText = text;
+        }
+    }
+    //outerText
+    写操作会替换整个元素
+//滚动
+    scrollIntoViewIfNeeded(alignCenter) //仅在元素不可见的情况下 alignCenter为true尽可能居中
+    scrollByLines(lineCount) //将元素的内容滚动指定的行高
+    scrollByPages(pageCount) //将元素内容滚动指定的页面高度
+</script>
+</body>
+</html>

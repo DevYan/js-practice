@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+//与类相关的扩充
+    //getElementsByClassName()
+
+        //取得所有类中包含"username" 和 "current"的元素，类名的先后顺序无所谓，同时包含
+        var allCurrentUsernames = document.getElementsByClassName("username current");
+        //取得ID为"myDiv"的元素中带有类名为"selected"的所有元素
+        var selected = document.getElementById("myDiv").getElementsByClassName('selected');
+
+    //classList 属性
+        add(value) //将给定值添加到列表中
+        contains(value) //判断是否包含
+        remove(value) //移除一个类名
+        toggle(value) //切换一个类名
+
+    //焦点管理
+        document.activeElement //始终引用DOM中当前获得了焦点的元素
+
+    //HTMLDocument 的变化
+        //readyState 属性
+            loading //正在加载文档
+            complete //加载完成
+        //兼容模式
+            if (document.compatMode == "CSS1Compat") {
+                console.log('Standarts mode');//标准模式
+            } else {
+                console.log('Quirks mode');//混杂模式 BackCompat
+            }
+        //head属性
+            var head = document.head || document.getElementsByTagName("head")[0];
+        //字符集属性
+            document.charset;
+            document.defaultCharset//文档默认字符集
+        //自定义数据属性
+            //可以通过dataset属性来访问自定义属性的值
+            var appId = div.dataset.appId //appid 元素中为 data-appId
+        //插入标记
+            innerHTML 
+                //读 返回元素所有的子节点
+                //写 替换元素的子节点
+            outerHTML 
+                //读 返回调用它元素及所有的子节点
+                //写 完全替换调用元素
+            insertAdjacentHTML() //接受两个参数 1：插入位置 2：要插入的HTML文本
+                beforebegin //当前元素之前插入一个紧邻的同辈元素
+                    element.insertAdjacentHTML("beforebegin","<p>Hello World!</p>");
+                afterbegin //当前元素之下插入一个新的子元素
+                beforeend //插在最后一个子元素之后
+                afterend //当前元素之后插入一个紧邻的同辈元素
+            //内存与性能问题
+                单独构建字符串，一次赋给innerHTML 效率高
+            //scrollIntoView
+                element.scrollIntoView() //让元素可见
+</script>
+</body>
+</html>
