@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    //创建脚本加载外部文件
+    function loadScript(url) {
+        var script = document.createElement('script');
+        script.type = "text/javascript";
+        script.src = url;
+        document.body.appendChild(script);
+    }
+
+    //创建并立即执行
+    function loadScriptString(code) {
+        var script = document.createElement('script');
+        script.type = "text/javascript";
+        try {
+            script.appendChild(document.createTextNode(code));
+        } catch (ex) {
+            script.text = code; //IE
+        }
+
+        document.body.appendChild(script);
+    }
+
+    loadScriptString('alert("hi")');
+    
+</script>
+</body>
+</html>
