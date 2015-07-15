@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+//访问元素的样式
+    通过style属性访问
+    CSS属性和js属性的对应关系
+    background-image  -------> style.backgroundImage
+    color -------> style.color
+    display -------> style.display
+    font-family -------> style.fontFamily
+
+    //特例
+    float -----> style.cssFloat
+
+    //DOM样式属性和方法
+        cssText //能访问到style特性中的CSS代码
+        length //CSS属性数量
+        parentRule //表示CSS信息的CSSRule对象
+        getPropertyVaule(propertyName) //返回给定属性的字符串值 eg. header.style.getPropertyValue('background-color')
+        getPropertyPriority(propertyName) //有！important则返回important 无则返回空
+        item(index)//返回给定位置的CSS属性的名称
+        removeProperty(propertyName)//从样式中删除给定属性
+        setProperty(propertyName,value,priority)//将给定属性设为相应的值
+
+    //计算的样式
+        document.defaultView.getComputedStyle(targetElement,null);
+        targetElement.currentStyle;
+//操作样式表
+    document.styleSheets //获得文档中所有的样式表
+    //在不同浏览器都能取得样式表对象
+    function getStyleSheet(element) {
+        return element.sheet || element.styleSheet;
+    }
+    //CSS规则
+        cssText:返回整条规则对应的文本
+        selectorText:返回当前规则的选择符文本
+    //创建规则
+        sheet.insertRule('...',0)//两个参数：1 规则文本 2 要在哪里插入
+    //删除规则
+        sheet.deleteRule(0)//要删除规则的位置
+//元素大小
+    //偏移量
+        offsetHeight 元素在垂直空间上所占的大小
+        offsetWidth  元素在水平方向所占空间的大小
+        offsetLeft  元素左外边框和父容器左内边框之间的距离
+        offsetTop   ...
+        //取得元素在页面上的偏移量
+        function getElementLeft(element) {
+            var actualLeft = element.offsetLeft;
+            var current = element.offsetParent;
+            while (current !== null) {
+                actualLeft += current.offsetLeft;
+                current = current.offsetParent;
+            }
+            return actualLeft;
+        }
+    //客户区大小
+        指的是元素内容及其内边距所占空间的大小
+        clientWidth clientHeight
+        //获取浏览器视区大小
+        function getViewPort() {
+            if (document.compatMode == 'BackCompat') {
+                //是否运行在混杂模式
+                return {
+                    width : document.body.clientWidth,
+                    height : document.body.clientHeight
+                }
+            } else {
+                return {
+                    width : document.documentElement.clientWidth,
+                    height : document.documentElement.clientHeight
+                }
+            }
+        }
+//滚动大小
+    scrollHeight 没有滚动条的情况下，元素内容的总高度
+    scrollWidth 没有滚动条的情况下，元素内容的总宽度
+    scrollLeft 被隐藏在内容区域左侧的像素数
+    scrollTop 被隐藏在内容区域上方的像素数
+
+
+</script>
+</body>
+</html>
