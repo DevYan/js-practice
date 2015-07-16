@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script type="text/javascript">
+//HTML事件处理程序
+    缺点：HTML代码与JavaScript代码紧密耦合
+//DOM0级事件处理程序
+    例如
+    var btn = document.getElementById('mybtn');
+    btn.onclick = function(){
+        alert(this.id);//mybtn
+    }
+
+//DOM2级事件处理程序
+    addEventListener() removeEventListener()
+    3个参数：1 事件名； 2 处理函数； 3 布尔 (true 捕获 false 冒泡)
+    例如
+    btn.addEventListener('click',function(){
+        alert(this.id);
+    },false); 
+    removeEventListener要想起作用必须移除和addEventListener()同一个函数的引用
+//IE事件处理程序
+    attachEvent() detachEvent()
+    2个参数：1 事件名； 2 处理函数；
+    例如
+    //全局作用域运行
+    btn.attachEvent('onclick',function(){
+        alert(this === window);//true
+    })
+
+    
+
+    
+</script>
+</body>
+</html>
